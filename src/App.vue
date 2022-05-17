@@ -1,27 +1,81 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from '@/components/HelloWorld.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <div>
+    <div id="right-panel" class="right-panel">
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+            <!-- Header-->
+            <header id="header" class="header">
+                <div class="top-left">
+                </div>
+                <div class="top-right">
+                    <div class="header-menu">
+                        <div class="header-left">
 
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+                        </div>
+
+                        <div class="user-area dropdown float-right">
+                            <div style="line-height: 50px;height: 50px;display: flex;align-items: center;">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header><!-- /header -->
+    <div class="main-menu">
+      <aside id="left-panel" class="left-panel">
+          <nav class="navbar navbar-expand-sm navbar-default">
+
+              <div id="main-menu" class="main-menu collapse navbar-collapse">
+                  <ul class="nav navbar-nav">
+                      <li class="menu-title">URL SHORTENER</li>
+
+                      <li >
+                          <router-link  to="/shortenurl">Shorten URL</router-link>
+                      </li>
+                  </ul>
+              </div><!-- /.navbar-collapse -->
+          </nav>
+      </aside><!-- /#left-panel -->
+      <div :style="{ marginLeft: '5%',minHeight: '100vh',marginRight: '5%',marginTop: '5%'}" class="fcontent">
+
+        <div class="clearfix">
+
+          <RouterView />
+        </div>
+
+                  <!-- <footer class="site-footer">
+                      <div class="footer-inner">
+                          <div class="row">
+                              <div class="col-sm-6">
+                                  Copyright &copy;  <a href="https://www.geekpicker.com/" target="_blank">Geekpicker</a>
+                              </div>
+                              <div class="col-sm-6 text-right">
+                                  Developed by <a href="https://github.com/mazbaul" target="_blank">Mazbaul Alam</a>
+                              </div>
+                          </div>
+                      </div>
+                  </footer> -->
+
+              </div><!-- /#right-panel -->
+      </div>
     </div>
-  </header>
-
-  <RouterView />
+  </div>
 </template>
 
-<style>
+<script>
+
+
+export default {
+  name: "Frontend",
+}
+</script>
+
+<style scoped>
 @import '@/assets/base.css';
+
 
 #app {
   max-width: 1280px;
@@ -31,89 +85,4 @@ import HelloWorld from '@/components/HelloWorld.vue'
   font-weight: normal;
 }
 
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>
