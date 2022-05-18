@@ -15,7 +15,14 @@
                                                     </div>
 
                                                     <div class="col-3" style="padding-top: 2%;">
-                                                        <button type="submit" @click="this.sendurl(url)" class="btn btn-info pull-right" style="width:100%;"><i class="fa fa-search"></i>&nbsp; Send</button>
+                                                        <button type="submit" @click="this.sendurl(url)" class="btn btn-info pull-right" style="width:100%;"><i class="fa fa-search"></i>&nbsp; Submit</button>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row form-group">
+
+                                                    <div  v-show="isError" class="alert alert-danger" role="alert">
+                                                      {{errorMessage}}
                                                     </div>
                                                 </div>
                                         </div>
@@ -39,10 +46,10 @@
                                         </thead>
                                         <tbody>
 
-                                            <tr role="row" class="">
-                                                <td class="text-center"></td>
-                                                <td class="text-center"></td>
-                                                <td></td>
+                                            <tr v-for="(data, index) in allData" role="row" class="">
+                                                <td class="text-center">{{index+1}}</td>
+                                                <td class="text-center">{{ data.original_url}}</td>
+                                                <td><a :href="data.shorten_url" target="_blank">{{data.shorten_url}}</a></td>
 
                                             </tr>
 
@@ -66,7 +73,8 @@
         return {
            url:'',
            allData:{},
-
+           isError:false,
+           errorMessage:''
         };
       },
       methods:{
@@ -74,16 +82,17 @@
           const th = this
           this.axios.get('http://127.0.0.1:8000/api/all-shorten-url').then(response => (
             th.allData = response.data
-
           ))
         },
         sendurl:function(url){
           const th = this
           this.axios.post('http://127.0.0.1:8000/api/generate-shorten-url?url='+url).then(response => (
             th.url = '',
-            console.log(response.data)
-
-          ))
+            th.getData()
+          )).catch(function (error) {
+            th.isError=true;
+            th.errorMessage=error.response.data.message;
+        })
         }
       },
       mounted(){
