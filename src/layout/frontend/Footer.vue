@@ -5,10 +5,10 @@
                 <div class="footer-inner bg-white">
                     <div class="row">
                         <div class="col-sm-6">
-                            Copyright &copy; {{date('Y')}} <a href="https://www.geekpicker.com/" target="_blank">Geekpicker</a>
+                            
                         </div>
                         <div class="col-sm-6 text-right">
-                            Developed by <a href="https://github.com/sumondeb" target="_blank">Sumon Deb</a>
+                            
                         </div>
                     </div>
                 </div>
